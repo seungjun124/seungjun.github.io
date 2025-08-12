@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://connect-flow-8014--ps.sandbox.lightning.force.com/lightning/lightning.out.js"></script>
+    <script>
+        const accessToken = '00DJO000000zspt!AQEAQMvKVcog1SPv0CUq2Hxi5p0rsgNH2Se2mekeLXbVnewb3mr_UYF8O6SSjum2xGzznXstXN2ivjoPBd52JuSDUz3gOc_T';
+        const salesforceUrl = 'https://connect-flow-8014--ps.sandbox.lightning.force.com/';
+
+        const appName = 'c:zzChatBot_Aura';
+     
+        const lwcAttributes = {
+            isDarkMode: true
+        };
+
+        $Lightning.use(appName,
+            () => {
+                $Lightning.createComponent(
+                    "c:sj_Chatbot",
+                    lwcAttributes,
+                    "agentforceChatbotDivId",
+                    (cmp) => {
+                        const hostDiv = document.createElement('div');
+                        hostDiv.id = 'agentforceChatbotDivId';
+                        hostDiv.style.position = 'fixed'; 
+
+                        hostDiv.style.right = '20px';
+                        hostDiv.style.bottom = '20px';
+                        
+                        hostDiv.style.width = '350px';
+                        hostDiv.style.height = '500px';
+
+                        hostDiv.style.zIndex = '9999'; 
+                        
+                        document.body.appendChild(hostDiv);
+                    }
+                );
+            },
+            salesforceUrl,
+            accessToken  
+        );
+    </script>
+</body>
+</html>
