@@ -4,23 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <div id="agentforceChatbotDivId" style="position: fixed; right: 20px; bottom: 20px; width: 350px; height: 500px; z-index: 9999;"></div>
 </head>
 <body>
     <script src="https://connect-flow-8014--ps.sandbox.lightning.force.com/lightning/lightning.out.js"></script>
     <script>
-        const hostDiv = document.createElement('div');
-        hostDiv.id = 'agentforceChatbotDivId';
-        hostDiv.style.position = 'fixed'; 
-
-        hostDiv.style.right = '20px';
-        hostDiv.style.bottom = '20px';
-        
-        hostDiv.style.width = '350px';
-        hostDiv.style.height = '500px';
-
-        hostDiv.style.zIndex = '9999'; 
-        
-        document.body.appendChild(hostDiv);
         const accessToken = '00DJO000000zspt!AQEAQN99UN78kJuV9Mhdh6p.O2JNUwuZLumdjoXg95U1PZy5SFd.MiqGER4ManCFPp8_QFNA4kk7tMEikCJ_wmy2HWmOwvgO';
         const salesforceUrl = 'https://connect-flow-8014--ps.sandbox.lightning.force.com/';
 
