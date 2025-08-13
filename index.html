@@ -18,35 +18,38 @@
     <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
     <script>
 
-
         document.addEventListener("DOMContentLoaded", function() {
             var vConsole = new window.VConsole();
-          });
+        });
 
-        const accessToken = '00DJO000000zspt!AQEAQNBWfghYlpd3hjTHV4AFXsaiqzdQvxhvp9xipCVtoM7ovbktUSnLvY2IBeakGiYKl9hPDAXXJSIHk9ZPEDzglsWjPT0t';
-        const salesforceUrl = 'https://connect-flow-8014--ps.sandbox.lightning.force.com/';
+        const accessToken = "00DJO000000zspt!AQEAQNBWfghYlpd3hjTHV4AFXsaiqzdQvxhvp9xipCVtoM7ovbktUSnLvY2IBeakGiYKl9hPDAXXJSIHk9ZPEDzglsWjPT0t";
+        const salesforceUrl = "https://connect-flow-8014--ps.sandbox.lightning.force.com/";
+        const appName = "c:zzChatBot_Aura";
+        const componentContainer = "agentforceChatbotDivId";
 
-        const appName = 'c:zzChatBot_Aura';
-     
         const lwcAttributes = {
             isDarkMode: false,
             chatbot_width: '350px',
             chatbot_height: '600px'
         };
 
-        $Lightning.use(appName,
-            () => {
+        $Lightning.use(appName, 
+            () => { 
                 $Lightning.createComponent(
-                    "c:sj_Chatbot",
-                    lwcAttributes,
-                    "agentforceChatbotDivId",
-                    (cmp) => {
-                        alert('불러오기 성공');
+                "c:lwcContainer", 
+                lwcAttributes,
+                componentContainer,
+                (cmp, err) => {
+                    if (err) {
+                        console.error('Error creating component: ', err);
+                        return;
+                    }
+                        console.log('Component created successfully!');
                     }
                 );
             },
             salesforceUrl,
-            accessToken  
+            accessToken
         );
     </script>
 </body>
