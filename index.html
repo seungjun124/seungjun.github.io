@@ -12,18 +12,20 @@
 </head>
 <body>
     <h1>삼성중공업 AI챗봇 테스트</h1>
-    <div id="agentforceChatbotDivId"></div>
 
     <div style="background-color: red; padding: 100em;"></div>
 
     <script src="https://connect-flow-8014--ps.sandbox.lightning.force.com/lightning/lightning.out.js"></script>
-    <!-- <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script> -->
     <script>
 
-        //document.addEventListener("DOMContentLoaded", function() {
-        //     var vConsole = new window.VConsole();
-        // });
+        // 1. <div> 요소를 생성합니다.
+const chatbotDiv = document.createElement('div');
 
+// 2. 생성된 요소의 id를 설정합니다.
+chatbotDiv.id = 'agentforceChatbotDivId';
+
+// 3. <body> 태그의 자식 요소로 추가합니다.
+document.body.appendChild(chatbotDiv);
         const accessToken = '00DJO000000zspt!AQEAQJ6V8YukIdUIdG57MFs02trt4PReAiaNjsdMjCPdN6xCJRohmQ64TyZfTtste3i9Q4TOTLYWLz4OJgCVeVvJCnlyYK1g';
         const salesforceUrl = 'https://connect-flow-8014--ps.sandbox.lightning.force.com/';
         const appName = 'c:zzChatBot_Aura';
@@ -31,8 +33,8 @@
      
         const lwcAttributes = {
             isDarkMode: false,
-            chatbot_width: '700px',
-            chatbot_height: '600px'
+            chatbot_width: '1000px',
+            chatbot_height: '1000px'
         };
 
         $Lightning.use(appName,
