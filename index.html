@@ -386,8 +386,6 @@ print(result.text)
         </section>
     </main>
 
-    <div id="agentforceChatbotDivId"></div>
-
     <script src="https://connect-flow-8014--ps.sandbox.lightning.force.com/lightning/lightning.out.js"></script>
     <script>
         // DOM이 완전히 로드된 후에 스크립트 실행
@@ -477,6 +475,11 @@ print(result.text)
                 commentCountSpan.textContent = count;
             }
         });
+
+
+        const chatbotDiv = document.createElement('div');
+        chatbotDiv.id = 'agentforceChatbotDivId';
+        document.body.appendChild(chatbotDiv);
 
         const accessToken = '00DJO000000zspt!AQEAQJTz4FWZ4Ur75tEhBKyT7_B7o3BOkZDYC1NluRFNUomKponUb5Le89kKprg9LLIgtjNJ0ow5k0T8SpUzBlTu8bu6DwgF';
         const salesforceUrl = 'https://connect-flow-8014--ps.sandbox.lightning.force.com/';
