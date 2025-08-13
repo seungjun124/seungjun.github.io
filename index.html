@@ -386,6 +386,8 @@ print(result.text)
         </section>
     </main>
 
+    <div id="agentforceChatbotDivId"></div>
+
     <script src="https://connect-flow-8014--ps.sandbox.lightning.force.com/lightning/lightning.out.js"></script>
     <script>
         // DOM이 완전히 로드된 후에 스크립트 실행
@@ -476,9 +478,6 @@ print(result.text)
             }
         });
 
-        const chatbotDiv = document.createElement('div');
-        chatbotDiv.id = 'agentforceChatbotDivId';
-        document.body.appendChild(chatbotDiv);
         const accessToken = '00DJO000000zspt!AQEAQJ6V8YukIdUIdG57MFs02trt4PReAiaNjsdMjCPdN6xCJRohmQ64TyZfTtste3i9Q4TOTLYWLz4OJgCVeVvJCnlyYK1g';
         const salesforceUrl = 'https://connect-flow-8014--ps.sandbox.lightning.force.com/';
         const appName = 'c:zzChatBot_Aura';
@@ -497,7 +496,7 @@ print(result.text)
                     lwcAttributes,
                     componentContainer,
                     (cmp) => {
-                        console.log('salesforce chatbot load.');
+                        console.log('salesforce chatbot');
                     }
                 );
             },
