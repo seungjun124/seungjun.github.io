@@ -483,9 +483,32 @@ print(result.text)
 
         const myApiUrl = 'https://byoungjin-github-io.vercel.app/api/getToken';
 
+        const accessToken = '00DJO000000zspt!AQEAQFAPClqKhjT7T0rBWHo5sXCHOqpgG2Tvm8YI7HrYJYn6agZF8B0nhMqs6VGEHFCoZ33i.Zx_rGiHD8mfWkSmxPRmoQwO';
         const salesforceUrl = 'https://connect-flow-8014--ps.sandbox.lightning.force.com/';
         const appName = 'c:zzChatBot_Aura';
         const componentContainer = 'agentforceChatbotDivId';
+     
+        const lwcAttributes = {
+            isDarkMode: true,
+            chatbot_width: '500px',
+            chatbot_height: '700px'
+        };
+
+        $Lightning.use(appName,
+            () => {
+                $Lightning.createComponent(
+                    "c:sj_Chatbot",
+                    lwcAttributes,
+                    componentContainer,
+                    (cmp) => {
+                        console.log('salesforce chatbot');
+                    }
+                );
+            },
+            salesforceUrl,
+            accessToken  
+        );
+        
 
         
         fetch(myApiUrl)
@@ -508,30 +531,30 @@ print(result.text)
             }
             console.log("백엔드를 통해 안전하게 토큰을 받았습니다:", accessToken);
             // $Lightning 유틸리티를 사용하여 LWC 컴포넌트를 로드한다.
-            const lwcAttributes = {
-                isDarkMode: false,
-                chatbot_width: '500px',
-                chatbot_height: '700px'
-            };
-    
             $Lightning.use(appName,
-                () => {
+                () => { // 성공 콜백
                     $Lightning.createComponent(
-                        "c:sj_Chatbot",
+                        componentName,
                         lwcAttributes,
-                        componentContainer,
-                        (cmp) => {
-                            console.log('salesforce chatbot');
+                        "agentforceChatbotDivId",
+                        (cmp, err) => { // 컴포넌트 생성 콜백
+                            if (err) {
+                                console.error('LWC 컴포넌트 생성 실패:', err);
+                                displayError(`LWC 컴포넌트를 생성하는 데 실패했습니다: ${err}`);
+                                return;
+                            }
+                            console.log('LWC 컴포넌트가 성공적으로 생성되었습니다.');
                         }
                     );
                 },
                 salesforceUrl,
-                accessToken  
+                accessToken
             );
         })
         .catch(error => {
             // fetch 과정이나 그 이후의 모든 에러를 여기서 잡는다.
             console.error('전체 프로세스 호출 실패2:', error);
+            displayError(`오류가 발생했습니다2: ${error.message}`);
         });
     </script>
     </body>
