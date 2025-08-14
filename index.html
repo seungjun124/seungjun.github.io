@@ -481,15 +481,15 @@ print(result.text)
         chatbotDiv.id = 'agentforceChatbotDivId';
         document.body.appendChild(chatbotDiv);
 
-        const accessToken = '00DJO000000zspt!AQEAQJTz4FWZ4Ur75tEhBKyT7_B7o3BOkZDYC1NluRFNUomKponUb5Le89kKprg9LLIgtjNJ0ow5k0T8SpUzBlTu8bu6DwgF';
+        const accessToken = '00DJO000000zspt!AQEAQLhXLpzyGolBCUtxbTwMZwryBmBTC2Ih5eu8z2gl8HJxrATyyGT7bU9E.EWdMDAOUV2LDGiWOibVAor5ETi6bfy3rrDS';
         const salesforceUrl = 'https://connect-flow-8014--ps.sandbox.lightning.force.com/';
         const appName = 'c:zzChatBot_Aura';
         const componentContainer = 'agentforceChatbotDivId';
      
         const lwcAttributes = {
             isDarkMode: false,
-            chatbot_width: '820px',
-            chatbot_height: '1000px'
+            chatbot_width: '820px', // max 800px;
+            chatbot_height: '1000px' // max 700px;
         };
 
         $Lightning.use(appName,
