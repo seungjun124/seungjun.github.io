@@ -488,45 +488,45 @@ print(result.text)
         const componentContainer = 'agentforceChatbotDivId';
 
         
-        fetch(myApiUrl)
-        .then(response => {
-            if (!response.ok) {
-                return response.json().then(errorData => {
-                    throw new Error(`백엔드 API 에러 (Status: ${response.status}): ${JSON.stringify(errorData)}`);
-                });
-            }
-            return response.json();
-        })
-        .then(data => {
-            const accessToken = data.access_token;
-            if (!accessToken) {
-                throw new Error("응답 데이터에 access_token이 없습니다.");
-            }
-            console.log("백엔드를 통해 안전하게 토큰을 받았습니다:", accessToken);
-            const lwcAttributes = {
-                isDarkMode: true,
-                chatbot_width: '500px',
-                chatbot_height: '700px'
-            };
+        fetch(myApiUrl, { method: 'POST' }) // 프록시 서버에 POST 요청을 보냅니다.
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(errorData => {
+                        throw new Error(`백엔드 API 에러 (Status: ${response.status}): ${JSON.stringify(errorData)}`);
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                const accessToken = data.access_token;
+                if (!accessToken) {
+                    throw new Error("응답 데이터에 access_token이 없습니다.");
+                }
+                console.log("백엔드를 통해 안전하게 토큰을 받았습니다:", accessToken);
+                const lwcAttributes = {
+                    isDarkMode: true,
+                    chatbot_width: '500px',
+                    chatbot_height: '700px'
+                };
     
-            $Lightning.use(appName,
-                () => {
-                    $Lightning.createComponent(
-                        "c:sj_Chatbot",
-                        lwcAttributes,
-                        componentContainer,
-                        (cmp) => {
-                            console.log('salesforce chatbot');
-                        }
-                    );
-                },
-                salesforceUrl,
-                accessToken  
-            );
-        })
-        .catch(error => {
-            console.error('전체 프로세스 호출 실패2:', error);
-        });
+                $Lightning.use(appName,
+                    () => {
+                        $Lightning.createComponent(
+                            "c:sj_Chatbot",
+                            lwcAttributes,
+                            componentContainer,
+                            (cmp) => {
+                                console.log('salesforce chatbot');
+                            }
+                        );
+                    },
+                    salesforceUrl,
+                    accessToken  
+                );
+            })
+            .catch(error => {
+                console.error('전체 프로세스 호출 실패2:', error);
+            });
     </script>
     </body>
 </html>
